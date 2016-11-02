@@ -1,16 +1,19 @@
 #include "task_os.h"
+#include <stdlib.h>
 
 
 volatile int timeout = 0;
+
+
 
 /*
  * Initialize tasks.
  */
 void task_init(task_t* tasks, uint16_t n){
 	for (int i = 0; i < n; ++i){
-		if (tasks[i]->init == NULL)
+		if (tasks[i].init == NULL)
 			continue;
-		tasks[i]->init(tasks[i]->user);
+		tasks[i].init(tasks[i].user);
 	}
 }
 
@@ -18,12 +21,13 @@ void task_init(task_t* tasks, uint16_t n){
  * Execute tasks, returns 0 on success or corresponding error code.
  */
 task_ret_t task_update(task_t* tasks, uint16_t n){
+	task_mutex m = 0;
 	for (int i = 0; i < n; ++i)
 	{
-		if (tasks[i]->update == NULL)
+		if (tasks[i].update == NULL)
 			continue;
 
-		task_ret_t r = tasks[i]->update(task[i]->user);
+		task_ret_t r = tasks[i].update(tasks[i].user, m);
 
 		if (r != TASK_DO_CONTINUE){
 			return TASK_DONT_CONTINUE;

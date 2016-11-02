@@ -23,5 +23,9 @@ void motors_pwm(uint8_t channel, int16_t speed, uint8_t decay);
 
 void motors_coast(uint8_t channel);
 
+void motors_force_disable();
+
+void motors_force_enable();
+
 
 #endif

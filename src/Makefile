@@ -7,7 +7,7 @@ OBJCOPY :=$(CROSS)objcopy
 OBJDUMP :=$(CROSS)objdump
 
 TARGET=brandfarlig
-MMCU?=atxmega16a4
+MMCU?=atxmega16a4u
 
 SOURCES=$(wildcard *.cpp) $(wildcard *.c)
 INCLUDES=
@@ -30,7 +30,7 @@ CXXFLAGS=-mmcu=$(MMCU) -std=$(CXXSTD) $(CXXOPT) -Wall -Wno-strict-aliasing
 CXXFLAGS+=$(addprefix -I,$(INCLUDES))
 CXXFLAGS+=-include "$(SETTINGS)"
 
-LDFLAGS=-mmcu=$(MMCU) -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map,--cref
+LDFLAGS=-mmcu=$(MMCU) -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map,--cref -lm
 
 .PHONY: all
 all: build/$(TARGET).hex 

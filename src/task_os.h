@@ -1,13 +1,14 @@
 #ifndef _TASK_OS_
 #define _TASK_OS_
+#include <stdint.h>
 
-#define TASK_INIT(name) void* name#_init(uint16_t id)
-#define TASK_UPDATE(name) task_ret_t name#_update(void* user, task_mutex mutex)
-#define TASK_ADD(name) {&name#_init, &name#_update}
+#define TASK_INIT(name) void* name##_init(uint16_t id)
+#define TASK_UPDATE(name) task_ret_t name##_update(void* user, task_mutex mutex)
+#define TASK_ADD(name) {&name##_init, &name##_update}
 #define TASK_ADD(init, update) {&init, &update}
 #define TASK_LIST(tasklist) task_t tasklist[] =
 
-typedef task_mutex uint16_t
+typedef uint16_t task_mutex;
 
 typedef enum
 {
