@@ -58,6 +58,10 @@ void vl53l0x_data_init(uint8_t addr, vl53l0x_voltage_enum voltage, vl53l0x_setti
 
 void vl53l0x_static_init(uint8_t addr, vl53l0x_settings_t* settings);
 
+void vl53l0x_start_continous(uint8_t addr, vl53l0x_settings_t* settings, uint32_t period_ms);
+
+uint16_t vl53l0x_get_range(uint8_t addr);
+
 void vl53l0x_set_gpio(uint8_t addr, vl53l0x_gpio_enum mode, uint8_t polarity);
 
 void vl53l0x_single_refcal(uint8_t addr, uint8_t vhv);

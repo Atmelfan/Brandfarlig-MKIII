@@ -15,11 +15,14 @@ typedef enum {
 	MOTOR_REVRS
 }motor_dir;
 
+#define MOTORS_FORWARD 0
+#define MOTORS_REVERSE 1
+
 void motors_init();
 
 motor_dir motors_set(uint8_t channel, motor_dir dir);
 
-void motors_pwm(uint8_t channel, int16_t speed, uint8_t decay);
+void motors_pwm(uint8_t channel, uint16_t speed, uint8_t direction);
 
 void motors_coast(uint8_t channel);
 

@@ -8,12 +8,10 @@ start_savedata current = {
 uint8_t cooldown;
 
 void start_update(){
-	if (current.status == START_STOPPED_SAFE && cooldown == 0)
-	{
+	if (current.status == START_STOPPED_SAFE && cooldown == 0){
 		current.status = START_STOPPED;
 		start_set_saved(&current);
-	}else if (current.status == START_PROGRAMMING && cooldown == 0)
-	{
+	}else if (current.status == START_PROGRAMMING && cooldown == 0){
 		current.status = START_POWER_ON;
 		start_set_saved(&current);
 	}
@@ -35,7 +33,7 @@ void start_init(){
 		current.status = saved_status;		
 	}else if(saved_status == START_STOPPED_SAFE){
 		current.status = saved_status;		
-		cooldown = 100;
+		cooldown = START_COOLDOWN;
 	}else{
 		current.status = START_POWER_ON;
 	}
@@ -49,7 +47,7 @@ void start_oncommand(uint8_t addr, uint8_t cmd){
 		if (new_dohyo != current.dohyo)
 		{
 			current.status = START_PROGRAMMING;
-			cooldown = 100;
+			cooldown = START_COOLDOWN;
 			current.dohyo = new_dohyo;
 			start_set_saved(&current);//Save new dohyo and 
 		}
@@ -62,13 +60,19 @@ void start_oncommand(uint8_t addr, uint8_t cmd){
 				
 			}else{
 				current.status = START_STOPPED_SAFE;
-				cooldown = 100;
+				cooldown = START_COOLDOWN;
 			}
 			start_set_saved(&current);//Save new status
 		}
 		//If not our dohyo, ignore it.
 	}
 	//Not a start command
+}
+
+void start_reset(){
+	if(current.status == START_STOPPED){
+		current.status = START_POWER_ON;
+	}
 }
 
 start_state start_status(){

@@ -196,21 +196,44 @@ void vl53l0x_static_init(uint8_t addr, vl53l0x_settings_t* settings){
 
 	vl53l0x_tune(addr);
 
-	vl53l0x_set_gpio(addr, VL53L0X_GPIO_INTERRUPT, VL53L0X_GPIO_POLARITY_NEG);
+	//vl53l0x_set_gpio(addr, VL53L0X_GPIO_INTERRUPT, VL53L0X_GPIO_POLARITY_NEG);
 
-	uint32_t timing_budget = vl53l0x_get_timing_budget(addr);
+	//uint32_t timing_budget = vl53l0x_get_timing_budget(addr);
+
+	//vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0xE8);
+
+	//vl53l0x_set_timing_budget(addr, timing_budget);
+
+	//vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0x01);
+	//vl53l0x_single_refcal(addr, 0x40);
+
+	//vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0x02);
+	//vl53l0x_single_refcal(addr, 0x00);
 
 	vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0xE8);
+}
 
-	vl53l0x_set_timing_budget(addr, timing_budget);
+void vl53l0x_start_continous(uint8_t addr, vl53l0x_settings_t* settings, uint32_t period_ms){
+	vl53l0x_write_register(addr, 0x80, 0x01);
+	vl53l0x_write_register(addr, 0xFF, 0x01);
+	vl53l0x_write_register(addr, 0x00, 0x00);
+	vl53l0x_write_register(addr, 0x91, settings->stop_value);
+	vl53l0x_write_register(addr, 0x00, 0x01);
+	vl53l0x_write_register(addr, 0xFF, 0x00);
+	vl53l0x_write_register(addr, 0x80, 0x00);
 
-	vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0x01);
-	vl53l0x_single_refcal(addr, 0x40);
+	vl53l0x_write_register(addr, VL53L0X_REG_SYSRANGE_START, 0x02);
+}
 
-	vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0x02);
-	vl53l0x_single_refcal(addr, 0x00);
+uint16_t vl53l0x_get_range(uint8_t addr){
 
-	vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_SEQUENCE_CONFIG, 0xE8);
+	while((vl53l0x_read_register(addr, VL53L0X_REG_RESULT_INTERRUPT_STATUS) & 0x07) == 0);
+
+	uint16_t range = vl53l0x_read_word(addr, VL53L0X_REG_RESULT_RANGE_STATUS + 10);
+
+	vl53l0x_write_register(addr, VL53L0X_REG_SYSTEM_INTERRUPT_CLEAR, 0x01);
+
+	return range;
 }
 
 void vl53l0x_set_gpio(uint8_t addr, vl53l0x_gpio_enum mode, uint8_t polarity){

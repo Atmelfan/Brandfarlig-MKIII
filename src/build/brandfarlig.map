@@ -70,8 +70,12 @@ Archive member included because of file (symbol)
                               /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o) (__utoa_common)
 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
                               build/main.o (__eerd_byte_x16a4u)
+/usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
+                              build/main.o (__eerd_word_x16a4u)
 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
                               build/main.o (__eewr_byte_x16a4u)
+/usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
+                              build/main.o (__eewr_word_x16a4u)
 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
                               /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o) (strrev)
 
@@ -79,20 +83,28 @@ Allocating common symbols
 Common symbol       size              file
 
 rxbuf               0x2               build/gpa_twi_xmega.o
-edges               0x8               build/main.o
+lt2                 0x2               build/gpa_sonar_stereo.o
 t2                  0x2               build/gpa_sonar_stereo.o
 send                0x6               build/gpa_pca9553.o
 rx1                 0x1               build/gpa_sonar_stereo.o
+ft2                 0x2               build/gpa_sonar_stereo.o
 rxlen               0x1               build/gpa_twi_xmega.o
 rx2                 0x1               build/gpa_sonar_stereo.o
-cstate              0x2               build/gpa_rc5.o
+cstate              0x2               build/gpa_sonar_stereo.o
+edge_threshold      0x2               build/main.o
 buffer              0x8               build/vl53l0x.o
+adc                 0x18              build/main.o
+sonar_data          0x10              build/gpa_sonar_stereo.o
 addr                0x1               build/gpa_twi_xmega.o
 t1                  0x2               build/gpa_sonar_stereo.o
 txlen               0x1               build/gpa_twi_xmega.o
+rt1                 0x2               build/gpa_sonar_stereo.o
+rt2                 0x2               build/gpa_sonar_stereo.o
 count               0x2               build/main.o
 cooldown            0x1               build/gpa_start.o
+lt1                 0x2               build/gpa_sonar_stereo.o
 edge                0x1               build/main.o
+ft1                 0x2               build/gpa_sonar_stereo.o
 txbuf               0x2               build/gpa_twi_xmega.o
 status              0x2               build/gpa_twi_xmega.o
 cmd                 0x2               build/gpa_rc5.o
@@ -108,20 +120,94 @@ Discarded input sections
                 0x0000000000000000        0xa build/gpa_twi_xmega.o
  .text          0x0000000000000000        0x0 build/gpa_sonar_stereo.o
  .bss           0x0000000000000000        0x0 build/gpa_sonar_stereo.o
- .text.sonar_valid
-                0x0000000000000000        0xc build/gpa_sonar_stereo.o
+ .text.sonar_init
+                0x0000000000000000       0x12 build/gpa_sonar_stereo.o
+ .text.sonar_gen_pulse
+                0x0000000000000000       0x3e build/gpa_sonar_stereo.o
+ .text.sonar_start_timer
+                0x0000000000000000       0x6c build/gpa_sonar_stereo.o
+ .text.sonar_trigger
+                0x0000000000000000       0x62 build/gpa_sonar_stereo.o
+ .text.sonar_trigger_free
+                0x0000000000000000       0x10 build/gpa_sonar_stereo.o
+ .text.sonar_status
+                0x0000000000000000        0x4 build/gpa_sonar_stereo.o
+ .text.sonar_has_range
+                0x0000000000000000        0x4 build/gpa_sonar_stereo.o
+ .text.sonar_has_direction
+                0x0000000000000000        0x4 build/gpa_sonar_stereo.o
+ .text.sonar_get_range
+                0x0000000000000000       0x38 build/gpa_sonar_stereo.o
+ .text.sonar_get_direction
+                0x0000000000000000       0x2e build/gpa_sonar_stereo.o
+ .bss.cch       0x0000000000000000        0x1 build/gpa_sonar_stereo.o
+ .data.sonar_timed_out
+                0x0000000000000000        0x1 build/gpa_sonar_stereo.o
  .text          0x0000000000000000        0x0 build/vl53l0x.o
  .bss           0x0000000000000000        0x0 build/vl53l0x.o
+ .text.vl53l0x_write_register
+                0x0000000000000000       0x12 build/vl53l0x.o
+ .text.vl53l0x_read_register
+                0x0000000000000000       0x38 build/vl53l0x.o
+ .text.vl53l0x_write_multi
+                0x0000000000000000       0x80 build/vl53l0x.o
+ .text.vl53l0x_read_multi
+                0x0000000000000000       0x38 build/vl53l0x.o
+ .text.vl53l0x_write_word
+                0x0000000000000000       0x16 build/vl53l0x.o
+ .text.vl53l0x_read_word
+                0x0000000000000000       0x46 build/vl53l0x.o
  .text.vl53l0x_write_dword
                 0x0000000000000000       0x1e build/vl53l0x.o
  .text.vl53l0x_read_dword
                 0x0000000000000000       0x54 build/vl53l0x.o
+ .text.decodeTimeout
+                0x0000000000000000       0x14 build/vl53l0x.o
+ .text.encodeTimeout
+                0x0000000000000000       0x44 build/vl53l0x.o
+ .text.timeoutMclksToMicroseconds
+                0x0000000000000000       0x82 build/vl53l0x.o
+ .text.timeoutMicrosecondsToMclks
+                0x0000000000000000       0x8e build/vl53l0x.o
  .text.vl53l0x_set_signalratelimit
                 0x0000000000000000       0x6a build/vl53l0x.o
+ .text.vl53l0x_set_addr
+                0x0000000000000000       0x16 build/vl53l0x.o
+ .text.vl53l0x_data_init
+                0x0000000000000000       0x9c build/vl53l0x.o
+ .text.vl53l0x_start_continous
+                0x0000000000000000       0x5e build/vl53l0x.o
+ .text.vl53l0x_get_range
+                0x0000000000000000       0x32 build/vl53l0x.o
+ .text.vl53l0x_set_gpio
+                0x0000000000000000       0x3a build/vl53l0x.o
+ .text.vl53l0x_single_refcal
+                0x0000000000000000       0x30 build/vl53l0x.o
+ .text.vl53l0x_set_refspad
+                0x0000000000000000       0xb2 build/vl53l0x.o
+ .text.vl53l0x_get_vcsel
+                0x0000000000000000       0x20 build/vl53l0x.o
+ .text.vl53l0x_get_sequence_enables
+                0x0000000000000000       0x3a build/vl53l0x.o
+ .text.vl53l0x_get_sequence_timeouts
+                0x0000000000000000       0xae build/vl53l0x.o
+ .text.vl53l0x_get_timing_budget
+                0x0000000000000000       0xda build/vl53l0x.o
+ .text.vl53l0x_set_timing_budget
+                0x0000000000000000      0x132 build/vl53l0x.o
  .text.vl53l0x_set_vcsel
                 0x0000000000000000      0x24c build/vl53l0x.o
+ .text.vl53l0x_get_spadinfo
+                0x0000000000000000      0x104 build/vl53l0x.o
+ .text.vl53l0x_tune
+                0x0000000000000000      0x324 build/vl53l0x.o
+ .text.vl53l0x_static_init
+                0x0000000000000000       0x60 build/vl53l0x.o
+ COMMON         0x0000000000000000        0x8 build/vl53l0x.o
  .text          0x0000000000000000        0x0 build/gpa_start.o
  .bss           0x0000000000000000        0x0 build/gpa_start.o
+ .text.start_dohyo
+                0x0000000000000000        0x6 build/gpa_start.o
  .text          0x0000000000000000        0x0 build/task_os.o
  .bss           0x0000000000000000        0x0 build/task_os.o
  .text.task_init
@@ -133,10 +219,18 @@ Discarded input sections
  .bss.timeout   0x0000000000000000        0x2 build/task_os.o
  .text          0x0000000000000000        0x0 build/gpa_pca9534.o
  .bss           0x0000000000000000        0x0 build/gpa_pca9534.o
+ .text.pca9534_write_register
+                0x0000000000000000       0x1c build/gpa_pca9534.o
  .text.pca9534_read_register
                 0x0000000000000000       0x36 build/gpa_pca9534.o
+ .text.pca9534_init
+                0x0000000000000000        0x2 build/gpa_pca9534.o
  .text.pca9534_in
                 0x0000000000000000        0x6 build/gpa_pca9534.o
+ .text.pca9534_out
+                0x0000000000000000        0x8 build/gpa_pca9534.o
+ .text.pca9534_dir
+                0x0000000000000000        0xa build/gpa_pca9534.o
  .text.pca9534_polarity
                 0x0000000000000000        0x8 build/gpa_pca9534.o
  .text.pca9534_reset
@@ -148,9 +242,25 @@ Discarded input sections
  COMMON         0x0000000000000000        0x0 build/gpa_pca9534.o
  .text          0x0000000000000000        0x0 build/main.o
  .bss           0x0000000000000000        0x0 build/main.o
+ .text.usart_send
+                0x0000000000000000       0x1a build/main.o
+ .text.usart_int
+                0x0000000000000000       0x30 build/main.o
+ .text.usart_init
+                0x0000000000000000       0x16 build/main.o
+ .text.edge_avg
+                0x0000000000000000       0x36 build/main.o
+ .text.edge_acal
+                0x0000000000000000       0x10 build/main.o
+ .text.edge_get
+                0x0000000000000000       0x20 build/main.o
  .text.start_status_changed
                 0x0000000000000000        0x2 build/main.o
+ .text.get_distance
+                0x0000000000000000       0x12 build/main.o
+ .bss.stat      0x0000000000000000        0x1 build/main.o
  .bss.i         0x0000000000000000        0x2 build/main.o
+ .data.ccw      0x0000000000000000        0x1 build/main.o
  .bss.tg        0x0000000000000000        0x1 build/main.o
  .text          0x0000000000000000        0x0 build/gpa_pca9553.o
  .bss           0x0000000000000000        0x0 build/gpa_pca9553.o
@@ -160,12 +270,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 build/gpa_adc_freerun.o
  .text          0x0000000000000000        0x0 build/motors.o
  .bss           0x0000000000000000        0x0 build/motors.o
- .text.motors_init
-                0x0000000000000000       0x36 build/motors.o
  .text.motors_set
                 0x0000000000000000       0xac build/motors.o
- .text.motors_pwm
-                0x0000000000000000       0xd8 build/motors.o
  .text          0x0000000000000000        0x0 build/gpa_pid.o
  .bss           0x0000000000000000        0x0 build/gpa_pid.o
  .text.pid_update
@@ -246,6 +352,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
  .text.libgcc.mul
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.div
+                0x0000000000000000       0x44 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
  .text.libgcc.prologue
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
@@ -302,6 +410,8 @@ Discarded input sections
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_clear_bss.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
+ .text.libgcc.mul
+                0x0000000000000000       0x16 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
  .text.libgcc.div
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
@@ -315,6 +425,8 @@ Discarded input sections
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
+ .text.libgcc.mul
+                0x0000000000000000       0x1e /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
  .text.libgcc.div
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
@@ -328,16 +440,28 @@ Discarded input sections
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa.o)
+ .text.avr-libc
+                0x0000000000000000       0x16 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o)
+ .text.avr-libc
+                0x0000000000000000       0x16 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
+ .text.avr-libc
+                0x0000000000000000       0x34 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
+ .text.avr-libc
+                0x0000000000000000       0x20 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
 
 Memory Configuration
 
@@ -466,7 +590,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x2256
+.text           0x0000000000000000     0x1e3c
  *(.vectors)
  .vectors       0x0000000000000000      0x1fc /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
                 0x0000000000000000                __vectors
@@ -628,7 +752,6 @@ END GROUP
                 0x0000000000000254                __vector_116
                 0x0000000000000254                __vector_112
                 0x0000000000000254                __vector_111
-                0x0000000000000254                __vector_80
                 0x0000000000000254                __vector_14
                 0x0000000000000254                __vector_84
                 0x0000000000000254                __vector_57
@@ -660,324 +783,253 @@ END GROUP
  .text.__vector_46
                 0x00000000000002d8      0x11e build/gpa_twi_xmega.o
                 0x00000000000002d8                __vector_46
- .text.sonar_init
-                0x00000000000003f6       0x12 build/gpa_sonar_stereo.o
-                0x00000000000003f6                sonar_init
- .text.sonar_gen_pulse
-                0x0000000000000408       0x40 build/gpa_sonar_stereo.o
-                0x0000000000000408                sonar_gen_pulse
- .text.sonar_trigger
-                0x0000000000000448       0x50 build/gpa_sonar_stereo.o
-                0x0000000000000448                sonar_trigger
- .text.sonar_enable_echo
-                0x0000000000000498       0x1a build/gpa_sonar_stereo.o
-                0x0000000000000498                sonar_enable_echo
+ .text.sonar_start
+                0x00000000000003f6       0xae build/gpa_sonar_stereo.o
+                0x00000000000003f6                sonar_start
+ .text.sonar_tx
+                0x00000000000004a4       0x46 build/gpa_sonar_stereo.o
+                0x00000000000004a4                sonar_tx
+ .text.sonar_rx1_enable
+                0x00000000000004ea        0xc build/gpa_sonar_stereo.o
+                0x00000000000004ea                sonar_rx1_enable
+ .text.sonar_rx2_enable
+                0x00000000000004f6        0xc build/gpa_sonar_stereo.o
+                0x00000000000004f6                sonar_rx2_enable
+ .text.sonar_rx1
+                0x0000000000000502       0x54 build/gpa_sonar_stereo.o
+                0x0000000000000502                sonar_rx1
+ .text.sonar_rx2
+                0x0000000000000556       0x54 build/gpa_sonar_stereo.o
+                0x0000000000000556                sonar_rx2
+ .text.sonar_rx_disable
+                0x00000000000005aa       0x12 build/gpa_sonar_stereo.o
+                0x00000000000005aa                sonar_rx_disable
+ .text.sonar_end
+                0x00000000000005bc       0x7e build/gpa_sonar_stereo.o
+                0x00000000000005bc                sonar_end
  .text.__vector_68
-                0x00000000000004b2       0x4a build/gpa_sonar_stereo.o
-                0x00000000000004b2                __vector_68
+                0x000000000000063a       0x48 build/gpa_sonar_stereo.o
+                0x000000000000063a                __vector_68
  .text.__vector_69
-                0x00000000000004fc       0x4a build/gpa_sonar_stereo.o
-                0x00000000000004fc                __vector_69
+                0x0000000000000682       0x48 build/gpa_sonar_stereo.o
+                0x0000000000000682                __vector_69
  .text.__vector_79
-                0x0000000000000546       0x48 build/gpa_sonar_stereo.o
-                0x0000000000000546                __vector_79
+                0x00000000000006ca       0x48 build/gpa_sonar_stereo.o
+                0x00000000000006ca                __vector_79
+ .text.__vector_80
+                0x0000000000000712       0x48 build/gpa_sonar_stereo.o
+                0x0000000000000712                __vector_80
  .text.__vector_77
-                0x000000000000058e       0x3e build/gpa_sonar_stereo.o
-                0x000000000000058e                __vector_77
- .text.vl53l0x_write_register
-                0x00000000000005cc       0x12 build/vl53l0x.o
-                0x00000000000005cc                vl53l0x_write_register
- .text.vl53l0x_read_register
-                0x00000000000005de       0x38 build/vl53l0x.o
-                0x00000000000005de                vl53l0x_read_register
- .text.vl53l0x_write_multi
-                0x0000000000000616       0x80 build/vl53l0x.o
-                0x0000000000000616                vl53l0x_write_multi
- .text.vl53l0x_read_multi
-                0x0000000000000696       0x38 build/vl53l0x.o
-                0x0000000000000696                vl53l0x_read_multi
- .text.vl53l0x_write_word
-                0x00000000000006ce       0x16 build/vl53l0x.o
-                0x00000000000006ce                vl53l0x_write_word
- .text.vl53l0x_read_word
-                0x00000000000006e4       0x46 build/vl53l0x.o
-                0x00000000000006e4                vl53l0x_read_word
- .text.decodeTimeout
-                0x000000000000072a       0x14 build/vl53l0x.o
-                0x000000000000072a                decodeTimeout
- .text.encodeTimeout
-                0x000000000000073e       0x44 build/vl53l0x.o
-                0x000000000000073e                encodeTimeout
- .text.timeoutMclksToMicroseconds
-                0x0000000000000782       0x82 build/vl53l0x.o
-                0x0000000000000782                timeoutMclksToMicroseconds
- .text.timeoutMicrosecondsToMclks
-                0x0000000000000804       0x8e build/vl53l0x.o
-                0x0000000000000804                timeoutMicrosecondsToMclks
- .text.vl53l0x_set_addr
-                0x0000000000000892       0x16 build/vl53l0x.o
-                0x0000000000000892                vl53l0x_set_addr
- .text.vl53l0x_data_init
-                0x00000000000008a8       0x9c build/vl53l0x.o
-                0x00000000000008a8                vl53l0x_data_init
- .text.vl53l0x_set_gpio
-                0x0000000000000944       0x3a build/vl53l0x.o
-                0x0000000000000944                vl53l0x_set_gpio
- .text.vl53l0x_single_refcal
-                0x000000000000097e       0x30 build/vl53l0x.o
-                0x000000000000097e                vl53l0x_single_refcal
- .text.vl53l0x_set_refspad
-                0x00000000000009ae       0xb2 build/vl53l0x.o
-                0x00000000000009ae                vl53l0x_set_refspad
- .text.vl53l0x_get_vcsel
-                0x0000000000000a60       0x20 build/vl53l0x.o
-                0x0000000000000a60                vl53l0x_get_vcsel
- .text.vl53l0x_get_sequence_enables
-                0x0000000000000a80       0x3a build/vl53l0x.o
-                0x0000000000000a80                vl53l0x_get_sequence_enables
- .text.vl53l0x_get_sequence_timeouts
-                0x0000000000000aba       0xae build/vl53l0x.o
-                0x0000000000000aba                vl53l0x_get_sequence_timeouts
- .text.vl53l0x_get_timing_budget
-                0x0000000000000b68       0xda build/vl53l0x.o
-                0x0000000000000b68                vl53l0x_get_timing_budget
- .text.vl53l0x_set_timing_budget
-                0x0000000000000c42      0x132 build/vl53l0x.o
-                0x0000000000000c42                vl53l0x_set_timing_budget
- .text.vl53l0x_get_spadinfo
-                0x0000000000000d74      0x104 build/vl53l0x.o
-                0x0000000000000d74                vl53l0x_get_spadinfo
- .text.vl53l0x_tune
-                0x0000000000000e78      0x324 build/vl53l0x.o
-                0x0000000000000e78                vl53l0x_tune
- .text.vl53l0x_static_init
-                0x000000000000119c       0xbe build/vl53l0x.o
-                0x000000000000119c                vl53l0x_static_init
+                0x000000000000075a       0x48 build/gpa_sonar_stereo.o
+                0x000000000000075a                __vector_77
  .text.start_update
-                0x000000000000125a       0x3c build/gpa_start.o
-                0x000000000000125a                start_update
+                0x00000000000007a2       0x3c build/gpa_start.o
+                0x00000000000007a2                start_update
  .text.start_init
-                0x0000000000001296       0x54 build/gpa_start.o
-                0x0000000000001296                start_init
+                0x00000000000007de       0x54 build/gpa_start.o
+                0x00000000000007de                start_init
  .text.start_oncommand
-                0x00000000000012ea       0x68 build/gpa_start.o
-                0x00000000000012ea                start_oncommand
+                0x0000000000000832       0x68 build/gpa_start.o
+                0x0000000000000832                start_oncommand
+ .text.start_reset
+                0x000000000000089a        0xe build/gpa_start.o
+                0x000000000000089a                start_reset
  .text.start_status
-                0x0000000000001352        0x8 build/gpa_start.o
-                0x0000000000001352                start_status
- .text.start_dohyo
-                0x000000000000135a        0x6 build/gpa_start.o
-                0x000000000000135a                start_dohyo
- .text.pca9534_write_register
-                0x0000000000001360       0x1c build/gpa_pca9534.o
-                0x0000000000001360                pca9534_write_register
- .text.pca9534_init
-                0x000000000000137c        0x2 build/gpa_pca9534.o
-                0x000000000000137c                pca9534_init
- .text.pca9534_out
-                0x000000000000137e        0x8 build/gpa_pca9534.o
-                0x000000000000137e                pca9534_out
- .text.pca9534_dir
-                0x0000000000001386        0xa build/gpa_pca9534.o
-                0x0000000000001386                pca9534_dir
- .text.usart_send
-                0x0000000000001390       0x1a build/main.o
-                0x0000000000001390                usart_send
- .text.usart_int
-                0x00000000000013aa       0x30 build/main.o
-                0x00000000000013aa                usart_int
- .text.usart_init
-                0x00000000000013da       0x16 build/main.o
-                0x00000000000013da                usart_init
+                0x00000000000008a8        0x8 build/gpa_start.o
+                0x00000000000008a8                start_status
+ .text.do_base_delay
+                0x00000000000008b0       0x30 build/main.o
+                0x00000000000008b0                do_base_delay
  .text.rc5_on_recieve
-                0x00000000000013f0       0x2c build/main.o
-                0x00000000000013f0                rc5_on_recieve
+                0x00000000000008e0      0x14e build/main.o
+                0x00000000000008e0                rc5_on_recieve
  .text.rc5_on_recieve2
-                0x000000000000141c        0x2 build/main.o
-                0x000000000000141c                rc5_on_recieve2
+                0x0000000000000a2e        0x2 build/main.o
+                0x0000000000000a2e                rc5_on_recieve2
  .text.start_get_saved
-                0x000000000000141e       0x20 build/main.o
-                0x000000000000141e                start_get_saved
+                0x0000000000000a30       0x20 build/main.o
+                0x0000000000000a30                start_get_saved
  .text.start_set_saved
-                0x000000000000143e       0x1e build/main.o
-                0x000000000000143e                start_set_saved
- .text.setup    0x000000000000145c      0x184 build/main.o
-                0x000000000000145c                setup
- .text.update   0x00000000000015e0      0x2b8 build/main.o
-                0x00000000000015e0                update
+                0x0000000000000a50       0x1e build/main.o
+                0x0000000000000a50                start_set_saved
+ .text.get_front
+                0x0000000000000a6e       0x1a build/main.o
+                0x0000000000000a6e                get_front
+ .text.read_settings
+                0x0000000000000a88      0x124 build/main.o
+                0x0000000000000a88                read_settings
+ .text.setup    0x0000000000000bac       0xec build/main.o
+                0x0000000000000bac                setup
+ .text.led_edges
+                0x0000000000000c98       0x70 build/main.o
+                0x0000000000000c98                led_edges
+ .text.led_distance
+                0x0000000000000d08       0xc8 build/main.o
+                0x0000000000000d08                led_distance
+ .text.update   0x0000000000000dd0      0x5ae build/main.o
+                0x0000000000000dd0                update
  .text.setClockTo32MHz
-                0x0000000000001898       0x1e build/main.o
-                0x0000000000001898                setClockTo32MHz
+                0x000000000000137e       0x1e build/main.o
+                0x000000000000137e                setClockTo32MHz
  .text.startup.main
-                0x00000000000018b6        0xe build/main.o
-                0x00000000000018b6                main
+                0x000000000000139c        0xe build/main.o
+                0x000000000000139c                main
  .text.__vector_43
-                0x00000000000018c4       0x86 build/main.o
-                0x00000000000018c4                __vector_43
+                0x00000000000013aa       0x86 build/main.o
+                0x00000000000013aa                __vector_43
  .text.__vector_47
-                0x000000000000194a       0x54 build/main.o
-                0x000000000000194a                __vector_47
+                0x0000000000001430       0x54 build/main.o
+                0x0000000000001430                __vector_47
  .text.__vector_20
-                0x000000000000199e       0x5a build/main.o
-                0x000000000000199e                __vector_20
+                0x0000000000001484       0x6c build/main.o
+                0x0000000000001484                __vector_20
  .text.__vector_74
-                0x00000000000019f8       0x58 build/main.o
-                0x00000000000019f8                __vector_74
+                0x00000000000014f0      0x126 build/main.o
+                0x00000000000014f0                __vector_74
  .text.pca9553_reset
-                0x0000000000001a50        0xe build/gpa_pca9553.o
-                0x0000000000001a50                pca9553_reset
+                0x0000000000001616        0xe build/gpa_pca9553.o
+                0x0000000000001616                pca9553_reset
  .text.pca9553_pwm0
-                0x0000000000001a5e        0x6 build/gpa_pca9553.o
-                0x0000000000001a5e                pca9553_pwm0
+                0x0000000000001624        0x6 build/gpa_pca9553.o
+                0x0000000000001624                pca9553_pwm0
  .text.pca9553_pwm1
-                0x0000000000001a64        0x6 build/gpa_pca9553.o
-                0x0000000000001a64                pca9553_pwm1
+                0x000000000000162a        0x6 build/gpa_pca9553.o
+                0x000000000000162a                pca9553_pwm1
  .text.pca9553_set
-                0x0000000000001a6a       0x2a build/gpa_pca9553.o
-                0x0000000000001a6a                pca9553_set
+                0x0000000000001630       0x2a build/gpa_pca9553.o
+                0x0000000000001630                pca9553_set
  .text.pca9553_update
-                0x0000000000001a94       0x42 build/gpa_pca9553.o
-                0x0000000000001a94                pca9553_update
+                0x000000000000165a       0x42 build/gpa_pca9553.o
+                0x000000000000165a                pca9553_update
  .text.pca9553_init
-                0x0000000000001ad6       0x10 build/gpa_pca9553.o
-                0x0000000000001ad6                pca9553_init
+                0x000000000000169c       0x10 build/gpa_pca9553.o
+                0x000000000000169c                pca9553_init
  .text.ReadSignatureByte1
-                0x0000000000001ae6       0x10 build/gpa_adc_freerun.o
-                0x0000000000001ae6                ReadSignatureByte1
+                0x00000000000016ac       0x10 build/gpa_adc_freerun.o
+                0x00000000000016ac                ReadSignatureByte1
  .text.adc_init_freerun
-                0x0000000000001af6       0x2e build/gpa_adc_freerun.o
-                0x0000000000001af6                adc_init_freerun
+                0x00000000000016bc       0x2e build/gpa_adc_freerun.o
+                0x00000000000016bc                adc_init_freerun
  .text.adc_config_channel
-                0x0000000000001b24        0xc build/gpa_adc_freerun.o
-                0x0000000000001b24                adc_config_channel
+                0x00000000000016ea        0xc build/gpa_adc_freerun.o
+                0x00000000000016ea                adc_config_channel
  .text.adc_start_freerun
-                0x0000000000001b30       0x14 build/gpa_adc_freerun.o
-                0x0000000000001b30                adc_start_freerun
+                0x00000000000016f6       0x14 build/gpa_adc_freerun.o
+                0x00000000000016f6                adc_start_freerun
+ .text.motors_init
+                0x000000000000170a       0x36 build/motors.o
+                0x000000000000170a                motors_init
+ .text.motors_pwm
+                0x0000000000001740       0xce build/motors.o
+                0x0000000000001740                motors_pwm
  .text.rc5_reset
-                0x0000000000001b44       0x16 build/gpa_rc5.o
-                0x0000000000001b44                rc5_reset
+                0x000000000000180e       0x16 build/gpa_rc5.o
+                0x000000000000180e                rc5_reset
  .text.rc5_init
-                0x0000000000001b5a        0x4 build/gpa_rc5.o
-                0x0000000000001b5a                rc5_init
+                0x0000000000001824        0x4 build/gpa_rc5.o
+                0x0000000000001824                rc5_init
  .text.rc5_update
-                0x0000000000001b5e      0x12e build/gpa_rc5.o
-                0x0000000000001b5e                rc5_update
+                0x0000000000001828      0x12e build/gpa_rc5.o
+                0x0000000000001828                rc5_update
  .text.avr-libc.fplib
-                0x0000000000001c8c        0xa /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(addsf3.o)
-                0x0000000000001c8c                __subsf3
-                0x0000000000001c8e                __addsf3
+                0x0000000000001956        0xa /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(addsf3.o)
+                0x0000000000001956                __subsf3
+                0x0000000000001958                __addsf3
  .text.avr-libc.fplib
-                0x0000000000001c96       0xc0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(addsf3x.o)
-                0x0000000000001cb0                __addsf3x
+                0x0000000000001960       0xc0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(addsf3x.o)
+                0x000000000000197a                __addsf3x
  .text.avr-libc.fplib
-                0x0000000000001d56        0x8 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(cmpsf2.o)
-                0x0000000000001d56                __lesf2
-                0x0000000000001d56                __nesf2
-                0x0000000000001d56                __eqsf2
-                0x0000000000001d56                __cmpsf2
-                0x0000000000001d56                __ltsf2
+                0x0000000000001a20        0x8 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(cmpsf2.o)
+                0x0000000000001a20                __lesf2
+                0x0000000000001a20                __nesf2
+                0x0000000000001a20                __eqsf2
+                0x0000000000001a20                __cmpsf2
+                0x0000000000001a20                __ltsf2
  .text.avr-libc.fplib
-                0x0000000000001d5e        0x6 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(cos.o)
-                0x0000000000001d5e                cos
+                0x0000000000001a28        0x6 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(cos.o)
+                0x0000000000001a28                cos
  .text.avr-libc.fplib
-                0x0000000000001d64       0x58 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fixunssfsi.o)
-                0x0000000000001d64                __fixunssfsi
+                0x0000000000001a2e       0x58 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fixunssfsi.o)
+                0x0000000000001a2e                __fixunssfsi
  .text.avr-libc.fplib
-                0x0000000000001dbc       0x7a /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(floatsisf.o)
-                0x0000000000001dbc                __floatunsisf
-                0x0000000000001dc0                __floatsisf
+                0x0000000000001a86       0x7a /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(floatsisf.o)
+                0x0000000000001a86                __floatunsisf
+                0x0000000000001a8a                __floatsisf
  .text.avr-libc.fplib
-                0x0000000000001e36       0x48 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_cmp.o)
-                0x0000000000001e36                __fp_cmp
+                0x0000000000001b00       0x48 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_cmp.o)
+                0x0000000000001b00                __fp_cmp
  .text.avr-libc.fplib
-                0x0000000000001e7e        0xc /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_inf.o)
-                0x0000000000001e7e                __fp_inf
+                0x0000000000001b48        0xc /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_inf.o)
+                0x0000000000001b48                __fp_inf
  .text.avr-libc.fplib
-                0x0000000000001e8a        0x6 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_nan.o)
-                0x0000000000001e8a                __fp_nan
+                0x0000000000001b54        0x6 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_nan.o)
+                0x0000000000001b54                __fp_nan
  .text.avr-libc.fplib
-                0x0000000000001e90        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_pscA.o)
-                0x0000000000001e90                __fp_pscA
+                0x0000000000001b5a        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_pscA.o)
+                0x0000000000001b5a                __fp_pscA
  .text.avr-libc.fplib
-                0x0000000000001e9e        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_pscB.o)
-                0x0000000000001e9e                __fp_pscB
+                0x0000000000001b68        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_pscB.o)
+                0x0000000000001b68                __fp_pscB
  .text.avr-libc.fplib
-                0x0000000000001eac       0x50 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_rempio2.o)
-                0x0000000000001eae                __fp_rempio2
+                0x0000000000001b76       0x50 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_rempio2.o)
+                0x0000000000001b78                __fp_rempio2
  .text.avr-libc.fplib
-                0x0000000000001efc       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_round.o)
-                0x0000000000001efc                __fp_round
+                0x0000000000001bc6       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_round.o)
+                0x0000000000001bc6                __fp_round
  .text.avr-libc.fplib
-                0x0000000000001f1e       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_sinus.o)
-                0x0000000000001f1e                __fp_sinus
+                0x0000000000001be8       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_sinus.o)
+                0x0000000000001be8                __fp_sinus
  .text.avr-libc.fplib
-                0x0000000000001f40       0x44 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_split3.o)
-                0x0000000000001f40                __fp_split3
-                0x0000000000001f50                __fp_splitA
+                0x0000000000001c0a       0x44 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_split3.o)
+                0x0000000000001c0a                __fp_split3
+                0x0000000000001c1a                __fp_splitA
  .text.avr-libc.fplib
-                0x0000000000001f84        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_zero.o)
-                0x0000000000001f84                __fp_zero
-                0x0000000000001f86                __fp_szero
+                0x0000000000001c4e        0xe /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_zero.o)
+                0x0000000000001c4e                __fp_zero
+                0x0000000000001c50                __fp_szero
  .text.avr-libc.fplib
-                0x0000000000001f92        0x8 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(gesf2.o)
-                0x0000000000001f92                __gtsf2
-                0x0000000000001f92                __gesf2
+                0x0000000000001c5c        0x8 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(gesf2.o)
+                0x0000000000001c5c                __gtsf2
+                0x0000000000001c5c                __gesf2
  .text.avr-libc.fplib
-                0x0000000000001f9a        0x4 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(mulsf3.o)
-                0x0000000000001f9a                __mulsf3
+                0x0000000000001c64        0x4 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(mulsf3.o)
+                0x0000000000001c64                __mulsf3
  .text.avr-libc.fplib
-                0x0000000000001f9e       0xc2 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(mulsf3x.o)
-                0x0000000000001fb2                __mulsf3x
-                0x0000000000001fb6                __mulsf3_pse
+                0x0000000000001c68       0xc2 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(mulsf3x.o)
+                0x0000000000001c7c                __mulsf3x
+                0x0000000000001c80                __mulsf3_pse
  .text.avr-libc.fplib
-                0x0000000000002060        0xc /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(sin.o)
-                0x0000000000002060                sin
+                0x0000000000001d2a        0xc /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(sin.o)
+                0x0000000000001d2a                sin
  .text.avr-libc.fplib
-                0x000000000000206c       0x1c /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_mpack.o)
-                0x000000000000206c                __fp_mpack
-                0x0000000000002070                __fp_mpack_finite
+                0x0000000000001d36       0x1c /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_mpack.o)
+                0x0000000000001d36                __fp_mpack
+                0x0000000000001d3a                __fp_mpack_finite
  .text.avr-libc.fplib
-                0x0000000000002088       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_powsodd.o)
-                0x0000000000002088                __fp_powsodd
+                0x0000000000001d52       0x22 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_powsodd.o)
+                0x0000000000001d52                __fp_powsodd
  .text.avr-libc.fplib
-                0x00000000000020aa       0x4a /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_powser.o)
-                0x00000000000020aa                __fp_powser
- .text.libgcc.div
-                0x00000000000020f4       0x44 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_udivmodsi4.o)
-                0x00000000000020f4                __udivmodsi4
- .text.libgcc.mul
-                0x0000000000002138       0x16 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_muluhisi3.o)
-                0x0000000000002138                __muluhisi3
- .text.libgcc.mul
-                0x000000000000214e       0x1e /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_umulhisi3.o)
-                0x000000000000214e                __umulhisi3
+                0x0000000000001d74       0x4a /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fp_powser.o)
+                0x0000000000001d74                __fp_powser
  .text.avr-libc
-                0x000000000000216c       0x16 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa.o)
-                0x000000000000216c                itoa
-                0x000000000000216c                __itoa
+                0x0000000000001dbe       0x20 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
+                0x0000000000001dbe                __eerd_byte_x16a4u
+                0x0000000000001dc6                eeprom_mapen
  .text.avr-libc
-                0x0000000000002182       0x16 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o)
-                0x0000000000002182                __itoa_ncheck
+                0x0000000000001dde        0xa /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
+                0x0000000000001dde                __eerd_word_x16a4u
  .text.avr-libc
-                0x0000000000002198       0x34 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
-                0x0000000000002198                __utoa_ncheck
-                0x000000000000219a                __utoa_common
+                0x0000000000001de8       0x46 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
+                0x0000000000001de8                __eewr_byte_x16a4u
+                0x0000000000001dea                __eewr_r18_x16a4u
  .text.avr-libc
-                0x00000000000021cc       0x20 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
-                0x00000000000021cc                __eerd_byte_x16a4u
-                0x00000000000021d4                eeprom_mapen
- .text.avr-libc
-                0x00000000000021ec       0x46 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
-                0x00000000000021ec                __eewr_byte_x16a4u
-                0x00000000000021ee                __eewr_r18_x16a4u
- .text.avr-libc
-                0x0000000000002232       0x20 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
-                0x0000000000002232                strrev
-                0x0000000000002252                . = ALIGN (0x2)
+                0x0000000000001e2e        0xa /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
+                0x0000000000001e2e                __eewr_word_x16a4u
+                0x0000000000001e38                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000002252        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
-                0x0000000000002252                exit
-                0x0000000000002252                _exit
+ .fini9         0x0000000000001e38        0x0 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
+                0x0000000000001e38                exit
+                0x0000000000001e38                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -996,11 +1048,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000002252        0x4 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
+ .fini0         0x0000000000001e38        0x4 /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000002256                _etext = .
+                0x0000000000001e3c                _etext = .
 
-.data           0x0000000000802000       0x52 load address 0x0000000000002256
+.data           0x0000000000802000        0x6 load address 0x0000000000001e3c
                 0x0000000000802000                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
@@ -1052,88 +1104,126 @@ END GROUP
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa_ncheck.o)
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
+ .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
+ .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
  .data          0x0000000000802000        0x0 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
  *(.data*)
  .data.ready    0x0000000000802000        0x1 build/gpa_twi_xmega.o
                 0x0000000000802000                ready
- .data.sonar_timed_out
-                0x0000000000802001        0x1 build/gpa_sonar_stereo.o
-                0x0000000000802001                sonar_timed_out
- .data.ccw      0x0000000000802002        0x1 build/main.o
-                0x0000000000802002                ccw
+ .data.dist_threshold
+                0x0000000000802001        0x2 build/main.o
+                0x0000000000802001                dist_threshold
+ .data.base_delay
+                0x0000000000802003        0x1 build/main.o
+                0x0000000000802003                base_delay
+ .data.base_velocity
+                0x0000000000802004        0x2 build/main.o
+                0x0000000000802004                base_velocity
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x0000000000802003       0x4f build/main.o
-                                         0x52 (size before relaxing)
  *(.gnu.linkonce.d*)
-                0x0000000000802052                . = ALIGN (0x2)
-                0x0000000000802052                _edata = .
-                0x0000000000802052                PROVIDE (__data_end, .)
+                0x0000000000802006                . = ALIGN (0x2)
+                0x0000000000802006                _edata = .
+                0x0000000000802006                PROVIDE (__data_end, .)
 
-.bss            0x0000000000802052       0x3b
-                0x0000000000802052                PROVIDE (__bss_start, .)
+.bss            0x0000000000802006       0x68
+                0x0000000000802006                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.current   0x0000000000802052        0x2 build/gpa_start.o
-                0x0000000000802052                current
- .bss.t         0x0000000000802054        0x4 build/main.o
-                0x0000000000802054                t
- .bss.k         0x0000000000802058        0x2 build/main.o
-                0x0000000000802058                k
- .bss.index     0x000000000080205a        0x1 build/main.o
-                0x000000000080205a                index
- .bss.ls        0x000000000080205b        0x1 build/gpa_pca9553.o
-                0x000000000080205b                ls
- .bss.pwm1      0x000000000080205c        0x1 build/gpa_pca9553.o
-                0x000000000080205c                pwm1
- .bss.pwm0      0x000000000080205d        0x1 build/gpa_pca9553.o
-                0x000000000080205d                pwm0
- .bss.psc1      0x000000000080205e        0x1 build/gpa_pca9553.o
-                0x000000000080205e                psc1
- .bss.psc0      0x000000000080205f        0x1 build/gpa_pca9553.o
-                0x000000000080205f                psc0
+ .bss.sonar_freerunning
+                0x0000000000802006        0x1 build/gpa_sonar_stereo.o
+                0x0000000000802006                sonar_freerunning
+ .bss.sonar_current_channel
+                0x0000000000802007        0x1 build/gpa_sonar_stereo.o
+                0x0000000000802007                sonar_current_channel
+ .bss.current   0x0000000000802008        0x2 build/gpa_start.o
+                0x0000000000802008                current
+ .bss.t         0x000000000080200a        0x4 build/main.o
+                0x000000000080200a                t
+ .bss.k         0x000000000080200e        0x2 build/main.o
+                0x000000000080200e                k
+ .bss.test_dist
+                0x0000000000802010        0x1 build/main.o
+                0x0000000000802010                test_dist
+ .bss.ledmode_dist
+                0x0000000000802011        0x1 build/main.o
+                0x0000000000802011                ledmode_dist
+ .bss.adc_ch    0x0000000000802012        0x1 build/main.o
+                0x0000000000802012                adc_ch
+ .bss.index     0x0000000000802013        0x1 build/main.o
+                0x0000000000802013                index
+ .bss.has_read_once
+                0x0000000000802014        0x1 build/main.o
+                0x0000000000802014                has_read_once
+ .bss.rotation_direction
+                0x0000000000802015        0x1 build/main.o
+                0x0000000000802015                rotation_direction
+ .bss.ls        0x0000000000802016        0x1 build/gpa_pca9553.o
+                0x0000000000802016                ls
+ .bss.pwm1      0x0000000000802017        0x1 build/gpa_pca9553.o
+                0x0000000000802017                pwm1
+ .bss.pwm0      0x0000000000802018        0x1 build/gpa_pca9553.o
+                0x0000000000802018                pwm0
+ .bss.psc1      0x0000000000802019        0x1 build/gpa_pca9553.o
+                0x0000000000802019                psc1
+ .bss.psc0      0x000000000080201a        0x1 build/gpa_pca9553.o
+                0x000000000080201a                psc0
  *(COMMON)
- COMMON         0x0000000000802060        0x9 build/gpa_twi_xmega.o
-                0x0000000000802060                rxbuf
-                0x0000000000802062                rxlen
-                0x0000000000802063                addr
-                0x0000000000802064                txlen
-                0x0000000000802065                txbuf
-                0x0000000000802067                status
- COMMON         0x0000000000802069        0x6 build/gpa_sonar_stereo.o
-                0x0000000000802069                t2
-                0x000000000080206b                rx1
-                0x000000000080206c                rx2
-                0x000000000080206d                t1
- COMMON         0x000000000080206f        0x8 build/vl53l0x.o
-                0x000000000080206f                buffer
- COMMON         0x0000000000802077        0x1 build/gpa_start.o
-                0x0000000000802077                cooldown
- COMMON         0x0000000000802078        0xb build/main.o
-                0x0000000000802078                edges
-                0x0000000000802080                count
-                0x0000000000802082                edge
- COMMON         0x0000000000802083        0x6 build/gpa_pca9553.o
-                0x0000000000802083                send
- COMMON         0x0000000000802089        0x4 build/gpa_rc5.o
-                0x0000000000802089                cstate
-                0x000000000080208b                cmd
-                0x000000000080208d                PROVIDE (__bss_end, .)
-                0x0000000000002256                __data_load_start = LOADADDR (.data)
-                0x00000000000022a8                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x000000000080201b        0x9 build/gpa_twi_xmega.o
+                0x000000000080201b                rxbuf
+                0x000000000080201d                rxlen
+                0x000000000080201e                addr
+                0x000000000080201f                txlen
+                0x0000000000802020                txbuf
+                0x0000000000802022                status
+ COMMON         0x0000000000802024       0x24 build/gpa_sonar_stereo.o
+                0x0000000000802024                lt2
+                0x0000000000802026                t2
+                0x0000000000802028                rx1
+                0x0000000000802029                ft2
+                0x000000000080202b                rx2
+                0x000000000080202c                cstate
+                0x000000000080202e                sonar_data
+                0x000000000080203e                t1
+                0x0000000000802040                rt1
+                0x0000000000802042                rt2
+                0x0000000000802044                lt1
+                0x0000000000802046                ft1
+ COMMON         0x0000000000802048        0x1 build/gpa_start.o
+                0x0000000000802048                cooldown
+ COMMON         0x0000000000802049       0x1d build/main.o
+                0x0000000000802049                edge_threshold
+                0x000000000080204b                adc
+                0x0000000000802063                count
+                0x0000000000802065                edge
+ COMMON         0x0000000000802066        0x6 build/gpa_pca9553.o
+                0x0000000000802066                send
+ COMMON         0x000000000080206c        0x2 build/gpa_rc5.o
+                0x000000000080206c                cmd
+                0x000000000080206e                PROVIDE (__bss_end, .)
+                0x0000000000001e3c                __data_load_start = LOADADDR (.data)
+                0x0000000000001e42                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x000000000080208d        0x0
-                0x000000000080208d                PROVIDE (__noinit_start, .)
+.noinit         0x000000000080206e        0x0
+                0x000000000080206e                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x000000000080208d                PROVIDE (__noinit_end, .)
-                0x000000000080208d                _end = .
-                0x000000000080208d                PROVIDE (__heap_start, .)
+                0x000000000080206e                PROVIDE (__noinit_end, .)
+                0x000000000080206e                _end = .
+                0x000000000080206e                PROVIDE (__heap_start, .)
 
-.eeprom         0x0000000000810000        0x0
+.eeprom         0x0000000000810000        0xc
  *(.eeprom*)
-                0x0000000000810000                __eeprom_end = .
+ .eeprom        0x0000000000810000        0xc build/main.o
+                0x0000000000810000                ee_dist_threshold
+                0x0000000000810002                ee_rotation_direction
+                0x0000000000810003                ee_base_delay
+                0x0000000000810004                ee_base_velocity
+                0x0000000000810006                ee_edge_hysteresis
+                0x0000000000810008                ee_edge_threshold
+                0x000000000081000a                ee_stat
+                0x000000000081000b                ee_dohyo
+                0x000000000081000c                __eeprom_end = .
 
 .fuse
  *(.fuse)
@@ -1289,9 +1379,15 @@ __do_copy_data                                    /usr/lib/gcc/avr/4.8.1/avrxmeg
                                                   build/gpa_twi_xmega.o
 __eerd_byte_x16a4u                                /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
                                                   build/main.o
+__eerd_word_x16a4u                                /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
+                                                  build/main.o
 __eewr_byte_x16a4u                                /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
+                                                  /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
                                                   build/main.o
 __eewr_r18_x16a4u                                 /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_byte_atxmega16a4u.o)
+                                                  /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
+__eewr_word_x16a4u                                /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eewr_word_atxmega16a4u.o)
+                                                  build/main.o
 __eqsf2                                           /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(cmpsf2.o)
 __fixunssfsi                                      /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(fixunssfsi.o)
                                                   build/main.o
@@ -1504,7 +1600,8 @@ __vector_78                                       /usr/lib/gcc/avr/4.8.1/../../.
 __vector_79                                       build/gpa_sonar_stereo.o
                                                   /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 __vector_8                                        /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
-__vector_80                                       /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
+__vector_80                                       build/gpa_sonar_stereo.o
+                                                  /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 __vector_81                                       /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 __vector_82                                       /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 __vector_83                                       /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
@@ -1528,6 +1625,8 @@ __vector_99                                       /usr/lib/gcc/avr/4.8.1/../../.
 __vector_default                                  /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 __vectors                                         /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 _exit                                             /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
+adc                                               build/main.o
+adc_ch                                            build/main.o
 adc_config                                        build/adc.o
 adc_config_channel                                build/gpa_adc_freerun.o
                                                   build/main.o
@@ -1541,7 +1640,10 @@ adc_read_pin                                      build/adc.o
 adc_start_freerun                                 build/gpa_adc_freerun.o
                                                   build/main.o
 addr                                              build/gpa_twi_xmega.o
+base_delay                                        build/main.o
+base_velocity                                     build/main.o
 buffer                                            build/vl53l0x.o
+cch                                               build/gpa_sonar_stereo.o
 ccw                                               build/main.o
 cmd                                               build/gpa_rc5.o
 cooldown                                          build/gpa_start.o
@@ -1549,33 +1651,57 @@ cos                                               /usr/lib/gcc/avr/4.8.1/../../.
                                                   build/main.o
 count                                             build/main.o
 cstate                                            build/gpa_rc5.o
+                                                  build/gpa_sonar_stereo.o
 current                                           build/gpa_start.o
 decodeTimeout                                     build/vl53l0x.o
+dist_threshold                                    build/main.o
+do_base_delay                                     build/main.o
 edge                                              build/main.o
-edges                                             build/main.o
+edge_acal                                         build/main.o
+edge_avg                                          build/main.o
+edge_get                                          build/main.o
+edge_threshold                                    build/main.o
+ee_base_delay                                     build/main.o
+ee_base_velocity                                  build/main.o
+ee_dist_threshold                                 build/main.o
+ee_dohyo                                          build/main.o
+ee_edge_hysteresis                                build/main.o
+ee_edge_threshold                                 build/main.o
+ee_rotation_direction                             build/main.o
+ee_stat                                           build/main.o
 eeprom_mapen                                      /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_byte_atxmega16a4u.o)
+                                                  /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(eerd_word_atxmega16a4u.o)
 encodeTimeout                                     build/vl53l0x.o
 exit                                              /usr/lib/gcc/avr/4.8.1/avrxmega2/libgcc.a(_exit.o)
                                                   /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
+ft1                                               build/gpa_sonar_stereo.o
+ft2                                               build/gpa_sonar_stereo.o
+get_distance                                      build/main.o
+get_front                                         build/main.o
+has_read_once                                     build/main.o
 i                                                 build/main.o
 index                                             build/main.o
                                                   build/gpa_rc5.o
 itoa                                              /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(itoa.o)
 k                                                 build/main.o
+led_distance                                      build/main.o
+led_edges                                         build/main.o
+ledmode_dist                                      build/main.o
 ls                                                build/gpa_pca9553.o
+lt1                                               build/gpa_sonar_stereo.o
+lt2                                               build/gpa_sonar_stereo.o
 main                                              build/main.o
                                                   /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/crtx16a4u.o
 motors_init                                       build/motors.o
+                                                  build/main.o
 motors_pwm                                        build/motors.o
+                                                  build/main.o
 motors_set                                        build/motors.o
 pca9534_clr                                       build/gpa_pca9534.o
 pca9534_dir                                       build/gpa_pca9534.o
-                                                  build/main.o
 pca9534_in                                        build/gpa_pca9534.o
 pca9534_init                                      build/gpa_pca9534.o
-                                                  build/main.o
 pca9534_out                                       build/gpa_pca9534.o
-                                                  build/main.o
 pca9534_polarity                                  build/gpa_pca9534.o
 pca9534_read_register                             build/gpa_pca9534.o
 pca9534_reset                                     build/gpa_pca9534.o
@@ -1608,7 +1734,11 @@ rc5_reset                                         build/gpa_rc5.o
                                                   build/main.o
 rc5_update                                        build/gpa_rc5.o
                                                   build/main.o
+read_settings                                     build/main.o
 ready                                             build/gpa_twi_xmega.o
+rotation_direction                                build/main.o
+rt1                                               build/gpa_sonar_stereo.o
+rt2                                               build/gpa_sonar_stereo.o
 rx1                                               build/gpa_sonar_stereo.o
 rx2                                               build/gpa_sonar_stereo.o
 rxbuf                                             build/gpa_twi_xmega.o
@@ -1619,21 +1749,36 @@ setClockTo32MHz                                   build/main.o
 setup                                             build/main.o
 sin                                               /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libm.a(sin.o)
                                                   build/main.o
-sonar_enable_echo                                 build/gpa_sonar_stereo.o
+sonar_current_channel                             build/gpa_sonar_stereo.o
+sonar_data                                        build/gpa_sonar_stereo.o
+sonar_end                                         build/gpa_sonar_stereo.o
+sonar_freerunning                                 build/gpa_sonar_stereo.o
 sonar_gen_pulse                                   build/gpa_sonar_stereo.o
+sonar_get_direction                               build/gpa_sonar_stereo.o
+sonar_get_range                                   build/gpa_sonar_stereo.o
+sonar_has_direction                               build/gpa_sonar_stereo.o
+sonar_has_range                                   build/gpa_sonar_stereo.o
 sonar_init                                        build/gpa_sonar_stereo.o
-                                                  build/main.o
+sonar_rx1                                         build/gpa_sonar_stereo.o
+sonar_rx1_enable                                  build/gpa_sonar_stereo.o
+sonar_rx2                                         build/gpa_sonar_stereo.o
+sonar_rx2_enable                                  build/gpa_sonar_stereo.o
+sonar_rx_disable                                  build/gpa_sonar_stereo.o
+sonar_start                                       build/gpa_sonar_stereo.o
+sonar_start_timer                                 build/gpa_sonar_stereo.o
+sonar_status                                      build/gpa_sonar_stereo.o
 sonar_timed_out                                   build/gpa_sonar_stereo.o
 sonar_trigger                                     build/gpa_sonar_stereo.o
-                                                  build/main.o
-sonar_valid                                       build/gpa_sonar_stereo.o
+sonar_trigger_free                                build/gpa_sonar_stereo.o
+sonar_tx                                          build/gpa_sonar_stereo.o
 start_dohyo                                       build/gpa_start.o
-                                                  build/main.o
 start_get_saved                                   build/main.o
                                                   build/gpa_start.o
 start_init                                        build/gpa_start.o
                                                   build/main.o
 start_oncommand                                   build/gpa_start.o
+                                                  build/main.o
+start_reset                                       build/gpa_start.o
                                                   build/main.o
 start_set_saved                                   build/main.o
                                                   build/gpa_start.o
@@ -1642,6 +1787,7 @@ start_status                                      build/gpa_start.o
 start_status_changed                              build/main.o
 start_update                                      build/gpa_start.o
                                                   build/main.o
+stat                                              build/main.o
 status                                            build/gpa_twi_xmega.o
 strrev                                            /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(strrev.o)
                                                   /usr/lib/gcc/avr/4.8.1/../../../avr/lib/avrxmega2/libc.a(utoa_ncheck.o)
@@ -1651,6 +1797,7 @@ t2                                                build/gpa_sonar_stereo.o
 task_init                                         build/task_os.o
 task_timeout                                      build/task_os.o
 task_update                                       build/task_os.o
+test_dist                                         build/main.o
 tg                                                build/main.o
 timeout                                           build/task_os.o
 timeoutMclksToMicroseconds                        build/vl53l0x.o
@@ -1678,7 +1825,7 @@ usart_init                                        build/main.o
 usart_int                                         build/main.o
 usart_send                                        build/main.o
 vl53l0x_data_init                                 build/vl53l0x.o
-                                                  build/main.o
+vl53l0x_get_range                                 build/vl53l0x.o
 vl53l0x_get_sequence_enables                      build/vl53l0x.o
 vl53l0x_get_sequence_timeouts                     build/vl53l0x.o
 vl53l0x_get_spadinfo                              build/vl53l0x.o
@@ -1689,15 +1836,14 @@ vl53l0x_read_multi                                build/vl53l0x.o
 vl53l0x_read_register                             build/vl53l0x.o
 vl53l0x_read_word                                 build/vl53l0x.o
 vl53l0x_set_addr                                  build/vl53l0x.o
-                                                  build/main.o
 vl53l0x_set_gpio                                  build/vl53l0x.o
 vl53l0x_set_refspad                               build/vl53l0x.o
 vl53l0x_set_signalratelimit                       build/vl53l0x.o
 vl53l0x_set_timing_budget                         build/vl53l0x.o
 vl53l0x_set_vcsel                                 build/vl53l0x.o
 vl53l0x_single_refcal                             build/vl53l0x.o
+vl53l0x_start_continous                           build/vl53l0x.o
 vl53l0x_static_init                               build/vl53l0x.o
-                                                  build/main.o
 vl53l0x_tune                                      build/vl53l0x.o
 vl53l0x_write_dword                               build/vl53l0x.o
 vl53l0x_write_multi                               build/vl53l0x.o

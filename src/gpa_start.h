@@ -20,6 +20,8 @@ typedef struct __attribute__((__packed__))
 
 #define START_SIZEOF_SAVE (sizeof(start_savedata))
 
+#define START_COOLDOWN 100
+
 #define START_ADDR_PROGRAM 	0x0B	//Address for programming command
 #define START_ADDR_START 	0x07	//Address for start command
 
@@ -47,6 +49,8 @@ start_state start_status();
 uint8_t start_dohyo();
 
 void start_update();
+
+void start_reset();
 
 #endif
 

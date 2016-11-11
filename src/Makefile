@@ -37,7 +37,7 @@ all: build/$(TARGET).hex
 	$(SIZE) -C --mcu=$(MMCU) build/$(TARGET).elf
 
 install: build/$(TARGET).hex
-	avrdude -p $(MMCU) -P usb -c avrisp2 -U flash:w:build/$(TARGET).hex:i
+	avrdude -p $(MMCU) -P usb -c atmelice_pdi -U flash:w:build/$(TARGET).hex:i
 
 clean:
 	@rm -f build/*.o build/*.d build/*.lst build/*.map build/*.hex build/*.elf
